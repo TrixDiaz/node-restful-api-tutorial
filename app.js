@@ -2,14 +2,20 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const mongoose= require('mongoose');
+const mongoose = require('mongoose');
 
 const productRoutes = require('./api/routes/products');
 const ordertRoutes = require('./api/routes/orders');
 
 mongoose.connect('mongodb+srv://johndarlucio022:' +
     process.env.MONGO_ATLAS_PW +
-    '@node-api.qd5pym4.mongodb.net/?retryWrites=true&w=majority&appName=node-api');
+    '@node-api.qd5pym4.mongodb.net/?retryWrites=true&w=majority&appName=node-api',
+    // {
+    //     useMongoClient: true
+    // }
+);
+
+mongoose.Promise = global.Promise;
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
