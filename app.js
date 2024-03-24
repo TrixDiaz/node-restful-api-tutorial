@@ -14,10 +14,10 @@ mongoose.connect('mongodb+srv://johndarlucio022:' +
     //     useMongoClient: true
     // }
 );
-
 mongoose.Promise = global.Promise;
 
 app.use(morgan('dev'));
+app.use('/uploads',express.static('uploads')); // make the uploads public to view
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
