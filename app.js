@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const productRoutes = require('./api/routes/products');
-const ordertRoutes = require('./api/routes/orders');
+const orderRoutes = require('./api/routes/orders');
+const userRoutes = require('./api/routes/user');
 
 mongoose.connect('mongodb+srv://johndarlucio022:' +
     process.env.MONGO_ATLAS_PW +
@@ -33,7 +34,8 @@ app.use(bodyParser.json());
 
 // Routes which should handle Request
 app.use('/products', productRoutes);
-app.use('/orders', ordertRoutes);
+app.use('/orders', orderRoutes);
+app.use('/user', userRoutes);
 
 app.use((req, res, next) => {
     const error = new Error('Not found');
